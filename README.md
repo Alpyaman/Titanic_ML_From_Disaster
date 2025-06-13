@@ -33,6 +33,14 @@ The goal is to build a predictive model that classifies whether a passenger surv
 ```bash
 pip install -r requirements.txt
 ```
+This file includes the main libraries used in this project such as:
+- pandas
+- numpy
+- scikit-learn
+- xgboost
+- lightgbm
+- joblib
+
 ## Usage
 ### Preprocess Data
 ```bash
