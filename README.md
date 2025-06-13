@@ -77,14 +77,14 @@ This script will:
 ## Project Structure
 ```bash
 .
-├── preprocess.py          # Data preprocessing functions
-├── train_model.py         # Model training and tuning pipeline
-├── make_submission.py     # Script for generating Kaggle submission CSV
-├── requirements.txt       # Python dependencies
-├── README.md              # This file
-└── data/
-    ├── train.csv          # Titanic training dataset
-    └── test.csv           # Titanic test dataset
+├── preprocess.py                  # Data preprocessing functions
+├── train_model.py                 # Model training and tuning pipeline
+├── final_kaggle_submission.py     # Script for generating Kaggle submission CSV
+├── requirements.txt               # Python dependencies
+├── README.md                      # This file
+└── titanic_data/
+    ├── train.csv                  # Titanic training dataset
+    └── test.csv                   # Titanic test dataset
 ```
 ## License
 This project is licensed under the MIT License.
