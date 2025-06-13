@@ -32,3 +32,32 @@ The goal is to build a predictive model that classifies whether a passenger surv
 
 ```bash
 pip install -r requirements.txt
+```
+## Usage
+### Preprocess Data
+```bash
+from preprocess import preprocess
+
+df_train = preprocess('data/train.csv')
+df_test = preprocess('data/test.csv')
+```
+### Train Models with Hyperparameter Tuning
+Run the training script:
+```bash
+python train_model.py
+```
+This will:
+- Preprocess data
+- Train multiple models using GridSearchCV
+- Output best model and CV scores
+- Save the best model as `best_model.pkl`
+
+### Generate Kaggle Submission
+Run the submission script:
+```bash
+python final_kaggle_submission.py
+```
+This script will:
+- Load the test data
+- Apply trained model
+- Generate `submission.csv` ready for Kaggle upload
