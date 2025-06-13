@@ -1,4 +1,4 @@
-# Titanic_ML_From_Disaster
+# Titanic Machine Learning From Disaster
 
 This repository contains a machine learning pipeline to predict passenger survival on the Titanic dataset using various classifiers and ensemble methods. The project includes data preprocessing, model training with hyperparameter tuning, and generating Kaggle submission files.
 
@@ -61,3 +61,26 @@ This script will:
 - Load the test data
 - Apply trained model
 - Generate `submission.csv` ready for Kaggle upload
+
+### Results
+- Best cross-validation accuracy achieved: ~0.84 (XGBoost)
+- Final Kaggle submission score: 0.75119
+
+## Project Structure
+```bash
+.
+├── preprocess.py          # Data preprocessing functions
+├── train_model.py         # Model training and tuning pipeline
+├── make_submission.py     # Script for generating Kaggle submission CSV
+├── requirements.txt       # Python dependencies
+├── README.md              # This file
+└── data/
+    ├── train.csv          # Titanic training dataset
+    └── test.csv           # Titanic test dataset
+```
+## License
+This project is licensed under the MIT License.
+
+## Acknowledgments
+- Kaggle Titanic Competition
+- Machine learning libraries: scikit-learn,XGBoost, LightGBM
