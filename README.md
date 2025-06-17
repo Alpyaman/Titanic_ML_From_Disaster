@@ -1,94 +1,80 @@
-# Titanic Machine Learning From Disaster
 
-This repository contains a machine learning pipeline to predict passenger survival on the Titanic dataset using various classifiers and ensemble methods. The project includes data preprocessing, model training with hyperparameter tuning, and generating Kaggle submission files.
+# 🛳️ Titanic Survival Prediction – Machine Learning Pipeline
 
----
+![Titanic EDA Thumbnail](A_collection_of_four_data_visualizations_related_t.png)
 
-## Project Overview
+[![Python](https://img.shields.io/badge/Python-3.9-blue.svg)](https://www.python.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Kaggle](https://img.shields.io/badge/Kaggle-Titanic-blue)](https://www.kaggle.com/competitions/titanic)
 
-The goal is to build a predictive model that classifies whether a passenger survived the Titanic disaster based on features like age, fare, passenger class, and family size.
-
----
-
-## Features
-
-- Comprehensive preprocessing pipeline (`preprocess.py`)
-- Multiple models including Logistic Regression, Decision Tree, Random Forest, XGBoost, LightGBM, Gradient Boosting
-- Hyperparameter tuning using `GridSearchCV`
-- Ensemble methods such as Stacking and Voting classifiers
-- Model persistence using `joblib`
-- Ready-to-submit Kaggle prediction pipeline
+This project tackles the Titanic survival prediction problem using advanced feature engineering, exploratory data analysis (EDA), and model ensembling to achieve high accuracy on the Kaggle leaderboard.
 
 ---
 
-## Getting Started
+## 📁 Project Structure
+```
+titanic-project/
+├── data/               # Raw dataset files (train.csv, test.csv)
+├── eda_titanic.ipynb   # Notebook with detailed EDA
+├── preprocess.py       # Data cleaning & feature engineering
+├── train_model.py      # Model training & evaluation
+├── make_submission.py  # Submission file generator
+├── A_collection_of_four_data_visualizations_related_t.png  # Project thumbnail
+└── README.md           # Project overview
+```
 
-### Prerequisites
+---
 
-- Python 3.8+
-- Packages listed in `requirements.txt` (create with `pip freeze > requirements.txt`)
+## 🔍 Exploratory Data Analysis (EDA)
+- Target variable (`Survived`) distribution
+- Categorical feature interactions (Pclass, Sex, Embarked)
+- Age and Fare distributions
+- Correlation matrix and violin plots
+- All plots are available in `eda_titanic.ipynb`
 
-### Install Dependencies
+---
 
+## 🛠️ Feature Engineering Highlights
+- Title extraction from names
+- Family size and group ID features
+- Fare and Age binning
+- Interaction terms like `Age × Pclass`, `FarePerPerson`, etc.
+- Cabin deck and ticket prefix extraction
+
+---
+
+## 🤖 Models Trained
+- Logistic Regression, Random Forest
+- XGBoost and LightGBM with hyperparameter tuning
+- Stacking and Voting Classifiers for ensemble modeling
+
+**Best score:** `0.8329` on Kaggle Public Leaderboard
+
+---
+
+## 📦 Requirements
 ```bash
 pip install -r requirements.txt
 ```
-This file includes the main libraries used in this project such as:
-- pandas
-- numpy
-- scikit-learn
-- xgboost
-- lightgbm
-- joblib
 
-## Usage
-### Preprocess Data
-```bash
-from preprocess import preprocess
+---
 
-df_train = preprocess('data/train.csv')
-df_test = preprocess('data/test.csv')
-```
-### Train Models with Hyperparameter Tuning
-Run the training script:
+## 🚀 How to Run
 ```bash
+python preprocess.py
 python train_model.py
+python make_submission.py
 ```
-This will:
-- Preprocess data
-- Train multiple models using GridSearchCV
-- Output best model and CV scores
-- Save the best model as `best_model.pkl`
 
-### Generate Kaggle Submission
-Run the submission script:
-```bash
-python final_kaggle_submission.py
-```
-This script will:
-- Load the test data
-- Apply trained model
-- Generate `submission.csv` ready for Kaggle upload
+---
 
-### Results
-- Best cross-validation accuracy achieved: ~0.84 (XGBoost)
-- Final Kaggle submission score: 0.75119
+## 🏁 Final Notes
+This project showcases a full ML workflow from raw data to leaderboard-ready model. It’s also a strong demonstration of **data storytelling, pipeline design, and reproducibility**.
 
-## Project Structure
-```bash
-.
-├── preprocess.py                  # Data preprocessing functions
-├── train_model.py                 # Model training and tuning pipeline
-├── final_kaggle_submission.py     # Script for generating Kaggle submission CSV
-├── requirements.txt               # Python dependencies
-├── README.md                      # This file
-└── titanic_data/
-    ├── train.csv                  # Titanic training dataset
-    └── test.csv                   # Titanic test dataset
-```
-## License
-This project is licensed under the MIT License.
+---
 
-## Acknowledgments
-- Kaggle Titanic Competition
-- Machine learning libraries: scikit-learn,XGBoost, LightGBM
+## 📧 Contact
+Created by [Alp Yaman](https://github.com/yourgithubusername) – feel free to reach out!
+
+## 📄 License
+This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
