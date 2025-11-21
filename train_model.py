@@ -1,3 +1,19 @@
+"""
+Titanic Model Training Module
+
+This module handles model training, hyperparameter tuning, and ensemble creation
+for the Titanic survival prediction problem.
+
+Features:
+- Multiple ML algorithms with GridSearchCV
+- Stacking ensemble with top-performing models
+- Cross-validation with StratifiedKFold
+- Model persistence and metadata tracking
+
+Author: Alp Yaman
+Date: 2025
+"""
+
 from sklearn.model_selection import GridSearchCV, StratifiedKFold, cross_val_score
 from sklearn.metrics import classification_report
 from sklearn.pipeline import Pipeline
@@ -15,6 +31,24 @@ import warnings
 warnings.filterwarnings('ignore')
 
 def get_models_and_params():
+    """
+    Define machine learning models and hyperparameter grids for tuning.
+
+    Returns
+    -------
+    dict
+        Dictionary mapping model names to their configurations.
+        Each configuration contains:
+        - 'model': instantiated model object
+        - 'params': hyperparameter grid for GridSearchCV
+
+    Examples
+    --------
+    >>> models = get_models_and_params()
+    >>> print(models.keys())
+    dict_keys(['Logistic Regression', 'Decision Tree', ...])
+    """
+    
     return {
         "Logistic Regression": {
             "model": LogisticRegression(max_iter=1000, random_state=42),
@@ -73,6 +107,31 @@ def get_models_and_params():
     }
 
 def train_with_gridsearch(X, y):
+    """
+    Train multiple models with hyperparameter tuning using GridSearchCV.
+
+    Parameters
+    ----------
+    X : pd.DataFrame or np.ndarray
+        Feature matrix for training.
+    y : pd.Series or np.ndarray
+        Target variable (survival labels).
+
+    Returns
+    -------
+    tuple
+        (best_model, results) where:
+        - best_model: fitted model with highest CV accuracy
+        - results: list of (name, score, estimator) tuples for all models
+
+    Notes
+    -----
+    - Uses StandardScaler for feature normalization
+    - Performs 5-fold cross-validation
+    - Searches hyperparameter grid for each model
+    - Prints progress and results during training
+    """
+    
     models = get_models_and_params()
     results = []
     best_score = 0
@@ -108,6 +167,30 @@ def train_with_gridsearch(X, y):
     return best_model, results
 
 def build_stacking_ensemble(best_estimators, X, y):
+    """
+    Build and train a stacking ensemble from best-performing models.
+
+    Parameters
+    ----------
+    best_estimators : list of tuples
+        List of (name, estimator) tuples for base models.
+    X : pd.DataFrame or np.ndarray
+        Feature matrix for training.
+    y : pd.Series or np.ndarray
+        Target variable (survival labels).
+
+    Returns
+    -------
+    StackingClassifier
+        Fitted stacking ensemble with GradientBoosting meta-learner.
+
+    Notes
+    -----
+    - Uses GradientBoosting as meta-learner for final predictions
+    - Performs 5-fold stratified cross-validation
+    - Includes passthrough=True to give meta-learner access to base features
+    """
+    
     # Use GradientBoosting as meta-learner
     stacking = StackingClassifier(
         estimators=best_estimators,
@@ -124,10 +207,30 @@ def build_stacking_ensemble(best_estimators, X, y):
     return stacking
 
 def save_model(model, filepath):
+    """
+    Save trained model to disk using joblib.
+
+    Parameters
+    ----------
+    model : estimator object
+        Trained scikit-learn compatible model.
+    filepath : str
+        Path where model will be saved.
+    """
     joblib.dump(model, filepath)
     print(f"💾 Model saved to {filepath}")
 
 def save_metadata(results, filepath="model_metadata.json"):
+    """
+    Save model performance metrics to JSON file.
+
+    Parameters
+    ----------
+    results : list of tuples
+        List of (name, score, model) tuples from training.
+    filepath : str, default="model_metadata.json"
+        Path where metadata will be saved.
+    """
     meta = {}
     for name, score, model in results:
         meta[name] = {"cv_accuracy": score}
@@ -164,4 +267,5 @@ if __name__ == "__main__":
     print(classification_report(y, y_pred))
 
     print("🎉 Training pipeline complete!")
+
     print("✅ All models trained and saved successfully.")
