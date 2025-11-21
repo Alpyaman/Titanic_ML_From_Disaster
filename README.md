@@ -13,7 +13,9 @@
 **A comprehensive machine learning pipeline for predicting Titanic passenger survival using ensemble methods, advanced feature engineering, and rigorous cross-validation.**
 [Features](#-key-features) • [Installation](#-installation) • [Usage](#-usage) • [Results](#-results) • [Project Structure](#-project-structure)
 </div>
+
 ---
+
 ## 📋 Table of Contents
 
 - [Overview](#-overview)
