@@ -240,7 +240,7 @@ def save_metadata(results, filepath="model_metadata.json"):
 
 if __name__ == "__main__":
     print("🚀 Starting training pipeline...")
-    df = preprocess('C:/Users/alpya/Documents/titanic-project/titanic_data/train.csv')
+    df = preprocess('titanic_data/train.csv')
 
     print("\n🔎 Missing values after preprocessing:")
     print(df.isnull().sum().sort_values(ascending=False).head(10))
@@ -258,7 +258,7 @@ if __name__ == "__main__":
 
     stacking_model = build_stacking_ensemble(top_estimators, X, y)
 
-    save_model(stacking_model, "scripts/best_stacking_model.pkl")
+    save_model(stacking_model, "best_stacking_model.pkl")
     save_metadata(results)
 
     # Final report on training data
@@ -269,3 +269,4 @@ if __name__ == "__main__":
     print("🎉 Training pipeline complete!")
 
     print("✅ All models trained and saved successfully.")
+
