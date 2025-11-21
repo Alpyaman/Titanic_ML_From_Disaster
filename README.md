@@ -15,6 +15,7 @@
 </div>
 ---
 ## 📋 Table of Contents
+
 - [Overview](#-overview)
 - [Key Features](#-key-features)
 - [Technologies Used](#-technologies-used)
@@ -28,7 +29,9 @@
 - [Contributing](#-contributing)
 - [License](#-license)
 - [Contact](#-contact)
+
 ---
+
 ## 🎯 Overview
 This project implements a complete end-to-end machine learning pipeline for the classic [Kaggle Titanic competition](https://www.kaggle.com/competitions/titanic). The goal is to predict passenger survival based on demographic and ticket information using advanced ensemble methods and comprehensive feature engineering.
 The pipeline includes:
@@ -39,7 +42,9 @@ The pipeline includes:
 - Reproducible workflow with modular code design
 
 **Kaggle Leaderboard Score:** `0.8329` (Top 3%)
+
 ---
+
 ## ✨ Key Features
 - **Advanced Feature Engineering**: Extract meaningful features like passenger titles, family size, fare per person, and interaction terms
 - **Multiple ML Models**: Train and compare 7+ different algorithms including XGBoost, LightGBM, CatBoost, and Random Forest
@@ -48,7 +53,9 @@ The pipeline includes:
 - **Comprehensive EDA**: Jupyter notebook with detailed visualizations and statistical analysis
 - **Production-Ready Code**: Modular, well-documented Python scripts with proper separation of concerns
 - **Reproducibility**: Fixed random seeds and version-controlled dependencies
+
 ---
+
 ## 🛠️ Technologies Used
 | Category | Technologies |
 |----------|-------------|
@@ -58,7 +65,9 @@ The pipeline includes:
 | **Machine Learning** | scikit-learn, XGBoost, LightGBM, CatBoost |
 | **Model Evaluation** | Cross-validation, GridSearchCV, StratifiedKFold |
 | **Development** | Jupyter Notebook, Git |
+
 ---
+
 ## 📦 Installation
 ### Prerequisites
 - Python 3.9 or higher
@@ -82,8 +91,11 @@ The pipeline includes:
 4. **Download the dataset**
    - Download `train.csv` and `test.csv` from [Kaggle Titanic Competition](https://www.kaggle.com/competitions/titanic/data)
    - Place them in the `titanic_data/` directory
+
 ---
+
 ## 🚀 Usage
+
 ### Quick Start
 Run the complete pipeline with these three commands:
 ```bash
@@ -94,7 +106,9 @@ python train_model.py
 # Step 3: Generate Kaggle submission file
 python make_submission.py
 ```
+
 ### Detailed Usage
+
 #### 1. Data Preprocessing
 The `preprocess.py` module handles all data cleaning and feature engineering:
 ```python
@@ -115,6 +129,7 @@ The `train_model.py` script trains multiple models and creates an ensemble:
 ```bash
 python train_model.py
 ```
+
 This will:
 - Load and preprocess training data
 - Train 7+ different models with GridSearchCV
